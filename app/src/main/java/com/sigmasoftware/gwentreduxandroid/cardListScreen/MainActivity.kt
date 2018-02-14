@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import com.sigmasoftware.gwentreduxandroid.Store
 import com.sigmasoftware.gwentreduxandroid.actions.loadCards
 import com.sigmasoftware.gwentreduxandroid.cardListScreen.views.CardsListView
-import com.sigmasoftware.gwentreduxandroid.states.CardListState
+import com.sigmasoftware.gwentreduxandroid.states.CardListLoadingState
 import com.sigmasoftware.gwentreduxandroid.states.State
 import com.sigmasoftware.gwentreduxandroid.states.model.CardListResponse
 
@@ -37,14 +37,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun onNewState(state: State) {
         when {
-            state.cardListState is CardListState.None ->
+            state.cardListLoadingState is CardListLoadingState.None ->
                 rootView.props = CardsListView.Props(arrayListOf(), { loadCards() })
-            state.cardListState is CardListState.Loading ->
+            state.cardListLoadingState is CardListLoadingState.Loading ->
                 rootView.props = CardsListView.Props(arrayListOf(), null)
-            state.cardListState is CardListState.Loaded ->
+            state.cardListLoadingState is CardListLoadingState.Loaded ->
                 rootView.props = CardsListView.Props(convertCardLinkToCard(state.cardListState.cardListResponse), { loadCards() })
-            state.cardListState is CardListState.FailedLoading -> {
-                rootView.props = CardsListView.Props(arrayListOf(), { loadCards() }, state.cardListState.errorMessage)
+            state.cardListLoadingState is CardListLoadingState.FailedLoading -> {
+                rootView.props = CardsListView.Props(convertCardLinkToCard(state.cardListState.cardListResponse), { loadCards() }, state.cardListLoadingState.errorMessage)
             }
         }
     }

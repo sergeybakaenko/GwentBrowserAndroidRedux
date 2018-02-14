@@ -16,7 +16,9 @@ class CardsListView : ConstraintLayout {
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
-    data class Props(val cardList: List<Card> = ArrayList(), val start: (() -> Unit)? = null, val errorMessage: String = String()) {
+    data class Props(val cardList: List<Card> = ArrayList(),
+                     val start: (() -> Unit)? = null,
+                     val errorMessage: String = String()) {
         data class Card(val name: String)
     }
 
@@ -50,7 +52,7 @@ class CardsListView : ConstraintLayout {
             field = value
         }
 
-    val cardListAdapter = CardListAdapter(context, props.cardList)
+    private val cardListAdapter = CardListAdapter(context, props.cardList)
 
     init {
         View.inflate(context, R.layout.card_list_view, this)

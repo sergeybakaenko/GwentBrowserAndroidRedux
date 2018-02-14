@@ -9,7 +9,7 @@ import com.sigmasoftware.gwentreduxandroid.states.model.CardListResponse
 fun loadCards() {
     Store.dispatch(action = BeginCardsLoading())
 
-    "https://api.gwentapi.com/v0/cards".httpGet().responseString { _, response, result ->
+    "https://api.gwentapi.com/v0/cards".httpGet().responseString { _, _, result ->
         when (result) {
             is Result.Failure -> {
                 Store.dispatch(action = FailedCardsLoading(result.error.localizedMessage))
