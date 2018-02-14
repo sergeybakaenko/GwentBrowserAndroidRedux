@@ -6,10 +6,10 @@ import com.github.kittinunf.result.Result
 import com.sigmasoftware.gwentreduxandroid.Store
 import com.sigmasoftware.gwentreduxandroid.states.model.CardListResponse
 
-fun loadCards() {
+fun loadCards(url: String) {
     Store.dispatch(action = BeginCardsLoading())
 
-    "https://api.gwentapi.com/v0/cards".httpGet().responseString { _, _, result ->
+    url.httpGet().responseString { _, _, result ->
         when (result) {
             is Result.Failure -> {
                 Store.dispatch(action = FailedCardsLoading(result.error.localizedMessage))

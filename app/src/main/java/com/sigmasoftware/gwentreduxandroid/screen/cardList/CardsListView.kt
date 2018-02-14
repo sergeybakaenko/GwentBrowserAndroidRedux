@@ -1,4 +1,4 @@
-package com.sigmasoftware.gwentreduxandroid.cardListScreen.views
+package com.sigmasoftware.gwentreduxandroid.screen.cardList
 
 import android.content.Context
 import android.support.constraint.ConstraintLayout
@@ -7,19 +7,19 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.Toast
 import com.sigmasoftware.gwentreduxandroid.R
-import com.sigmasoftware.gwentreduxandroid.cardListScreen.CardListAdapter
 import kotlinx.android.synthetic.main.card_list_view.view.*
 
 class CardsListView : ConstraintLayout {
 
-    constructor(context: Context) : this(context, null)
-    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
+    constructor(context: Context) : super(context, null)
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs, 0)
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
     data class Props(val cardList: List<Card> = ArrayList(),
                      val start: (() -> Unit)? = null,
                      val errorMessage: String = String()) {
-        data class Card(val name: String)
+        data class Card(val name: String, val clickListener: () -> Unit)
+
     }
 
     var props = Props()

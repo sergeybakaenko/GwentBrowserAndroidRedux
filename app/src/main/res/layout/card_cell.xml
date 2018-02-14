@@ -13,5 +13,6 @@
             android:layout_marginTop="16dp"
             app:layout_constraintLeft_toLeftOf="parent"
             android:id="@+id/cardName"
-            android:textSize="24sp"/>
+            android:textSize="24sp"
+            android:textColor="@color/colorPrimaryDark"/>
 </android.support.constraint.ConstraintLayout>
