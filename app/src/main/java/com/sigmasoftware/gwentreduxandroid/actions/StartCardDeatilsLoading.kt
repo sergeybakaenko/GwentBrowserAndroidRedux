@@ -6,11 +6,10 @@ import com.github.kittinunf.result.Result
 import com.sigmasoftware.gwentreduxandroid.Store
 import com.sigmasoftware.gwentreduxandroid.states.model.CardDetailsResponse
 
-
-fun loadCardDetails(cardUrl: String) {
+fun loadCardDetails(carDetailsUrl: String) {
     Store.dispatch(BeginCardDetailsLoading())
 
-    cardUrl.httpGet().responseString { _, _, result ->
+    carDetailsUrl.httpGet().responseString { _, _, result ->
         when (result) {
             is Result.Failure -> {
                 Store.dispatch(action = FailedCardDetailsLoading(result.error.localizedMessage))

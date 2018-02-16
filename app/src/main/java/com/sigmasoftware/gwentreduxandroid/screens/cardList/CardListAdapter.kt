@@ -1,4 +1,4 @@
-package com.sigmasoftware.gwentreduxandroid.screen.cardList
+package com.sigmasoftware.gwentreduxandroid.screens.cardList
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView

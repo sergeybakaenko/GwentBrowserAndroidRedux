@@ -11,7 +11,7 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name="com.sigmasoftware.gwentreduxandroid.screen.cardList.CardListActivity">
+        <activity android:name="com.sigmasoftware.gwentreduxandroid.screens.cardList.CardListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.sigmasoftware.gwentreduxandroid.screen.cardDetails.CardDetailsActivity">
+        <activity android:name="com.sigmasoftware.gwentreduxandroid.screens.cardDetails.CardDetailsActivity">
         </activity>
     </application>
 

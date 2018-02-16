@@ -7,16 +7,15 @@ import com.sigmasoftware.gwentreduxandroid.actions.FinishCardsLoading
 
 sealed class CardListLoadingState {
 
-    class None: CardListLoadingState()
-    class Loading: CardListLoadingState()
-    class Loaded: CardListLoadingState()
-    data class FailedLoading(val errorMessage: String = "Oops, something went wrong"): CardListLoadingState()
+    data class NextUrlAvailable(val nextUrl: String? = null) : CardListLoadingState()
+    class Loading : CardListLoadingState()
+    data class Failed(val errorMessage: String = "Oops, something went wrong") : CardListLoadingState()
 
     fun reduce(action: Action): CardListLoadingState {
-        return when(action) {
+        return when (action) {
             is BeginCardsLoading -> Loading()
-            is FinishCardsLoading -> Loaded()
-            is FailedCardsLoading -> FailedLoading(action.errorMessage)
+            is FinishCardsLoading -> NextUrlAvailable(action.cardListResponse.next)
+            is FailedCardsLoading -> Failed(action.errorMessage)
             else -> {
                 this
             }

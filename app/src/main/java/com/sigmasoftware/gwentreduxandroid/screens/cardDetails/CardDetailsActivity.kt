@@ -1,4 +1,4 @@
-package com.sigmasoftware.gwentreduxandroid.screen.cardDetails
+package com.sigmasoftware.gwentreduxandroid.screens.cardDetails
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -13,6 +13,7 @@ class CardDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         rootView = CardDetailsView(context = applicationContext)
+
         setContentView(rootView)
     }
 
@@ -36,9 +37,9 @@ class CardDetailsActivity : AppCompatActivity() {
                 rootView.props = CardDetailsView.Props(cardLoading = true)
             state.cardDetailsLoadingState is CardDetailsLoadingState.Loaded ->
                 rootView.props = CardDetailsView.Props(
-                        state.cardDetailsState.cardDetailsResponse.categories[0].name,
-                        state.cardDetailsState.cardDetailsResponse.cardFaction.name,
-                        state.cardDetailsState.cardDetailsResponse.cardFlavor)
+                        state.cardDetailsState.cardDetailsResponse.name,
+                        state.cardDetailsState.cardDetailsResponse.faction.name,
+                        state.cardDetailsState.cardDetailsResponse.flavor)
         }
     }
 }

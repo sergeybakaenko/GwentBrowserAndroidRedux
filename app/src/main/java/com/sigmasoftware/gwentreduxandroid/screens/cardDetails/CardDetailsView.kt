@@ -1,4 +1,4 @@
-package com.sigmasoftware.gwentreduxandroid.screen.cardDetails
+package com.sigmasoftware.gwentreduxandroid.screens.cardDetails
 
 import android.content.Context
 import android.support.constraint.ConstraintLayout
@@ -24,16 +24,23 @@ class CardDetailsView : ConstraintLayout {
                 cardNameTextView.visibility = GONE
                 cardFlavorTextView.visibility = GONE
                 cardFactionTextView.visibility = GONE
+                cardDetailsProgressBar.visibility = VISIBLE
             } else {
                 cardNameTextView.visibility = VISIBLE
                 cardFlavorTextView.visibility = VISIBLE
                 cardFactionTextView.visibility = VISIBLE
+                cardDetailsProgressBar.visibility = GONE
             }
             field = value
+            fillViews()
         }
 
     init {
         View.inflate(context, R.layout.card_details_view, this)
+        fillViews()
+    }
+
+    private fun fillViews() {
         cardNameTextView.text = props.cardName
         cardFactionTextView.text = props.cardFaction
         cardFlavorTextView.text = props.cardFlavor
